@@ -1,22 +1,22 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "athulya/laravel-knowledge-base",
+    "description": "This is my package LaravelKnowledgeBase",
     "keywords": [
-        ":vendor_name",
+        "athulya",
         "laravel",
-        "package_slug"
+        "laravel-knowledge-base"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/athulya/laravel-knowledge-base",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Athulya Santhosh",
+            "email": "athulyasanthosh95@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^7.4",
         "spatie/laravel-package-tools": "^1.4.3",
         "illuminate/contracts": "^8.37"
     },
@@ -30,13 +30,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Athulya\\LaravelKnowledgeBase\\": "src",
+            "Athulya\\LaravelKnowledgeBase\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Athulya\\LaravelKnowledgeBase\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -50,10 +50,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Athulya\\LaravelKnowledgeBase\\LaravelKnowledgeBaseServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
+                "LaravelKnowledgeBase": "Athulya\\LaravelKnowledgeBase\\LaravelKnowledgeBaseFacade"
             }
         }
     },

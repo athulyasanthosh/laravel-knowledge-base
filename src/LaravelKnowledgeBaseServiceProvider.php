@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Athulya\LaravelKnowledgeBase;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use Athulya\LaravelKnowledgeBase\Commands\LaravelKnowledgeBaseCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class LaravelKnowledgeBaseServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('laravel-knowledge-base')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_skeleton_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_laravel-knowledge-base_table')
+            ->hasCommand(LaravelKnowledgeBaseCommand::class);
     }
 }

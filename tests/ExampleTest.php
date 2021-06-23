@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace Athulya\LaravelKnowledgeBase\Tests;
 
 class ExampleTest extends TestCase
 {

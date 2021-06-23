@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Athulya\LaravelKnowledgeBase\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelKnowledgeBaseCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-knowledge-base';
 
     public $description = 'My command';
 
