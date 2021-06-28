@@ -6,7 +6,7 @@ use Athulya\LaravelKnowledgeBase\Models\Article;
 use Athulya\LaravelKnowledgeBase\Tests\TestCase;
 use Illuminate\Support\Facades\Route;
 
-class ArticleManagementControllerTest  extends TestCase
+class ArticleManagementControllerTest extends TestCase
 {
     /** @test */
     public function it_can_create_and_list_articles()
@@ -16,8 +16,8 @@ class ArticleManagementControllerTest  extends TestCase
             'category_id' => 1,
             'article_name' => 'movies',
             'author' => 'athulya',
-            'content' => 'Test content'
-        ]);        
+            'content' => 'Test content',
+        ]);
        
         $this->assertDatabaseCount('articles', 1);
 
