@@ -19,9 +19,9 @@ class CategoryManagementControllerTest extends TestCase
         /*$this->assertDatabaseCount('categories', 1);
 
         $first = Category::first();
-        $first->update(['category_name' => 'politics']);        
-       
-        $this->assertDatabaseCount('categories', 1);        
+        $first->update(['category_name' => 'politics']);
+
+        $this->assertDatabaseCount('categories', 1);
         $this->get('/')->assertOk()->assertSee('politics');*/
     }
 }

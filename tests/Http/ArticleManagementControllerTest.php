@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 class ArticleManagementControllerTest extends TestCase
 {
-   
     public function it_can_create_and_list_articles()
     {
         Article::create([
@@ -17,15 +16,15 @@ class ArticleManagementControllerTest extends TestCase
             'article_name' => 'movies',
             'author' => 'athulya',
             'content' => 'Test content',
-        ]);    
+        ]);
        
-       // $this->assertDatabaseCount('articles', 1);
+        // $this->assertDatabaseCount('articles', 1);
 
         Route::article('');
-       //$this->get('/')->assertOk();
+        //$this->get('/')->assertOk();
 
         $first = Article::first();
-        $first->update(['article_name' => 'virus']);        
+        $first->update(['article_name' => 'virus']);
         $this->assertDatabaseCount('articles', 1);
         $this->get('/')->assertOk()->assertSee('virus');
     }

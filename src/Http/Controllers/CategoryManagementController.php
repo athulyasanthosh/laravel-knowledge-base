@@ -9,19 +9,20 @@ class CategoryManagementController extends Controller
 {
     public function index()
     {
-        $categories = Category::all(); 
+        $categories = Category::all();
+
         return view('knowledge-base::category.index', compact('categories'));
     }
 
     public function create()
-    {        
+    {
         return view('knowledge-base::category.create');
     }
 
     public function store(Request $request)
-    {        
+    {
         $category = $request->validate([
-            'category_name' => 'required'
+            'category_name' => 'required',
         ]);
         
         Category::create($category);
@@ -38,7 +39,7 @@ class CategoryManagementController extends Controller
     public function update(Request $request, Category $category)
     {
         $data = $request->validate([
-            'category_name' => 'required'
+            'category_name' => 'required',
         ]);
 
         $category->update($data);
