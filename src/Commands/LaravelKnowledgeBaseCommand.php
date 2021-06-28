@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class LaravelKnowledgeBaseCommand extends Command
 {
-    public $signature = 'laravel-knowledge-base';
+    public $signature = 'knowledge-base';
 
     public $description = 'My command';
 

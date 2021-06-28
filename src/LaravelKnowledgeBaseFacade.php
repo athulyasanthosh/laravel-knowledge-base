@@ -11,6 +11,6 @@ class LaravelKnowledgeBaseFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'laravel-knowledge-base';
+        return 'knowledge-base';
     }
 }

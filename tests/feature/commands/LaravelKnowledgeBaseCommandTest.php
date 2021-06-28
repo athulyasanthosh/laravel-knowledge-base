@@ -9,7 +9,7 @@ use Athulya\LaravelKnowledgeBase\Tests\TestCase;
 
 class LaravelKnowledgeBaseCommandTest extends TestCase
 {
-    /** @test */
+    
     public function knowledge_base_command_works()
     {
         Article::create([
@@ -17,11 +17,8 @@ class LaravelKnowledgeBaseCommandTest extends TestCase
             'article_name' => 'test',
             'author' => 'test 1',
             'content' => 'test test test',
-        ]);
+        ]);       
         
-        /*Category::create([
-            'category_name' => 'general'
-        ]);*/
         
         $this->assertDatabaseCount('articles', 1);
         // $this->artisan('laravel-knowledge-base')->assertExitCode(0);
