@@ -51,10 +51,7 @@
         "laravel": {
             "providers": [
                 "Athulya\\LaravelKnowledgeBase\\LaravelKnowledgeBaseServiceProvider"
-            ],
-            "aliases": {
-                "LaravelKnowledgeBase": "Athulya\\LaravelKnowledgeBase\\LaravelKnowledgeBaseFacade"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",
