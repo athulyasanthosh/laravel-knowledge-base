@@ -1,12 +1,12 @@
-<?php 
+<?php
 namespace Athulya\LaravelKnowledgeBase\Models;
-use Illuminate\Database\Eloquent\Model; 
+
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
+ *
  */
 class Category extends Model
-{	
-	public $guarded = [];
+{
+    public $guarded = [];
 }
-?>

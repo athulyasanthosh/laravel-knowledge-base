@@ -2,9 +2,9 @@
 
 namespace Athulya\LaravelKnowledgeBase;
 
+use Athulya\LaravelKnowledgeBase\Commands\LaravelKnowledgeBaseCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Athulya\LaravelKnowledgeBase\Commands\LaravelKnowledgeBaseCommand;
 
 class LaravelKnowledgeBaseServiceProvider extends PackageServiceProvider
 {
@@ -18,7 +18,7 @@ class LaravelKnowledgeBaseServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-knowledge-base')
             ->hasConfigFile()
-            ->hasViews()            
+            ->hasViews()
             ->hasMigration('create_article_table')
             ->hasMigration('create_category_table')
             ->hasCommand(LaravelKnowledgeBaseCommand::class);
