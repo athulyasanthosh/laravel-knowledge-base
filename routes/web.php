@@ -19,10 +19,10 @@ Route::macro('article',function(string $prefix){
     Route::prefix($prefix)->group(function(){
         Route::get('/', [ArticleManagementController::class,'index'])->name('article.index');
         Route::get('/create', [ArticleManagementController::class,'create'])->name('article.create');
-        /*Route::post('/store', [CategoryManagementController::class,'store'])->name('category.store');
-        Route::get('/edit/{category}', [CategoryManagementController::class,'edit'])->name('category.edit');
-        Route::put('/update/{category}', [CategoryManagementController::class,'update'])->name('category.update');
-        Route::delete('/destroy/{category}', [CategoryManagementController::class,'destroy'])->name('category.destroy');*/
+        Route::post('/store', [ArticleManagementController::class,'store'])->name('article.store');
+        Route::get('/edit/{article}', [ArticleManagementController::class,'edit'])->name('article.edit');
+        Route::put('/update/{article}', [ArticleManagementController::class,'update'])->name('article.update');
+        Route::delete('/destroy/{article}', [ArticleManagementController::class,'destroy'])->name('article.destroy');
     });
 });
 ?>
