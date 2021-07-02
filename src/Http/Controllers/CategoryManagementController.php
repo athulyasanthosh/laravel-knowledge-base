@@ -51,7 +51,7 @@ class CategoryManagementController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
-        if($category) {
+        if ($category) {
             $category->delete();
             $status = [
                 'status' => 'ok',
@@ -60,6 +60,6 @@ class CategoryManagementController extends Controller
             ];
 
             return response()->json($status);
-        }        
+        }
     }
 }
