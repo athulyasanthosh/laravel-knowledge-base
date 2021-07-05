@@ -4,8 +4,8 @@ namespace Athulya\LaravelKnowledgeBase\Http\Controllers;
 
 use Athulya\LaravelKnowledgeBase\Models\Article;
 use Athulya\LaravelKnowledgeBase\Models\Category;
-use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class ArticleManagementController extends Controller
 {
@@ -18,7 +18,8 @@ class ArticleManagementController extends Controller
 
     public function create()
     {
-        $categories = Category::all();        
+        $categories = Category::all();
+
         return view('knowledge-base::article.create', compact('categories'));
     }
 
@@ -39,8 +40,10 @@ class ArticleManagementController extends Controller
     public function edit(Article $article)
     {
         $categories = Category::all();
+
         return view('knowledge-base::article.edit', compact('article', 'categories'));
     }
+
     public function update(Request $request, Article $article)
     {
         $articleData = $request->validate([
