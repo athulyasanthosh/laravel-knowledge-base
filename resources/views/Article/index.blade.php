@@ -28,6 +28,7 @@
                     <tr>
                     <th scope="col">No</th>
                     <th scope="col">Article Name</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Author</th>
                     <th scope="col">Updated At</th>
                     <th scope="col">Actions</th>
@@ -38,7 +39,8 @@
                 @forelse($articles as $article)
                     <tr id="article_{{ $article->id }}">
                     <th scope="row">{{ $i++ }}</th>
-                    <td width = "50%">{{ $article->article_name }}</td>
+                    <td width = "25%">{{ $article->article_name }}</td>
+                    <td width = "25%">{{ $article->category->category_name }}</td>
                     <td width = "30%">{{ $article->author }}</td>
                     <td>{{ $article->updated_at->format('Y-m-d H:i:s') }}</td>
                     <td width = "20%">

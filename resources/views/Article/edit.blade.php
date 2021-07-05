@@ -13,32 +13,32 @@
             </ul>
         </div>
         @endif
-        <form action="{{ route('article.store') }}" method="POST">
+        <form action="{{ route('article.update',$article->id) }}" method="POST">
             @csrf
+            @method('PUT')
             <div class="row">
                 <div class="col-xs-12 col-sm-12 cl-md-12 mb-2 p-2">
                     <div class="form-group">
                         <label for="article_name">Article Name<span class="text-danger">*</span>:</label>                        
-                        <input type="text" name="article_name" id="article_name" placeholder="Article Name" class="form-control" value="{{ old('article_name') }}">
+                        <input type="text" name="article_name" id="article_name" placeholder="Article Name" class="form-control" value="{{ $article->article_name }}">
                     </div>  
                     <div class="form-group">
                         <label for="author">Author<span class="text-danger">*</span>:</label>                        
-                        <input type="text" name="author" id="author" placeholder="Author" class="form-control" value="{{ old('author') }}">
+                        <input type="text" name="author" id="author" placeholder="Author" class="form-control" value="{{ $article->author }}">
                     </div>                  
                     <div class="form-group">
                         <label for="category_id">Category<span class="text-danger">*</span>:</label>                        
                         <select class="form-select form-control" name="category_id">
                             <option value="">Select Category</option>                            
                             @foreach($categories as $category)                            
-                            <option value="{{$category->id}}" {{ (old('category_id') == $category->id )? 'selected': ''; }}>{{$category->category_name}}</option>
+                            <option value="{{$category->id}}" {{ ($article->category_id == $category->id )? 'selected': ''; }}>{{$category->category_name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="content">Content<span class="text-danger">*</span>:</label>                        
-                        <textarea type="text" name="content" id="content" placeholder="content" class="form-control"></textarea>
-                    </div>
-                    
+                        <textarea type="text" name="content" id="content" placeholder="content" class="form-control">{{ $article->content }}</textarea>
+                    </div>                    
                 </div>
                 <div class="col-xs-12 col-sm-12 cl-md-12">
                     <button type="submit" class="btn btn-primary w-25">Save</button>
