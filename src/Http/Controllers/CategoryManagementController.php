@@ -53,7 +53,7 @@ class CategoryManagementController extends Controller
         $category = Category::find($id);
         dd($category->article->count());
         if ($category) {
-            if($category->article->count() > 0) {
+            if ($category->article->count() > 0) {
                 $status = [
                     'status' => 'notok',
                     'message' => 'error',
@@ -70,7 +70,7 @@ class CategoryManagementController extends Controller
                 ];
 
                 return response()->json($status);
-            }            
+            }
         }
     }
 }
