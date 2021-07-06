@@ -6,12 +6,13 @@ use Athulya\LaravelKnowledgeBase\Models\Article;
 use Athulya\LaravelKnowledgeBase\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Str;
 
 class ArticleManagementController extends Controller
 {
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::where('status', 0)->get();
 
         return view('knowledge-base::article.index', compact('articles'));
     }
@@ -24,13 +25,17 @@ class ArticleManagementController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {        
         $article = $request->validate([
             'article_name' => 'required',
             'author' => 'required',
             'category_id' => 'required',
             'content' => 'required',
+            'status' => 'required',
         ]);
+       
+        $slug = $this->slugGenerator($article['article_name']);
+        $article['slug'] = $slug;
         Article::create($article);
 
         return redirect()->route('article.index')
@@ -51,6 +56,7 @@ class ArticleManagementController extends Controller
             'author' => 'required',
             'category_id' => 'required',
             'content' => 'required',
+            'status' => 'required',
         ]);
         $article->update($articleData);
 
@@ -71,5 +77,18 @@ class ArticleManagementController extends Controller
 
             return response()->json($status);
         }
+    }
+
+    private function slugGenerator($name) {        
+        $slug = Str::slug($name);        
+        $article = Article::where('slug', $slug)->get();
+        $allSlugs = Article::where('slug', 'like', $slug.'%')->pluck('slug')->toArray();
+        //dd($allSlugs);
+        if($article->count() > 0 && in_array($slug, $allSlugs)) {
+            $count = 0;
+            while(in_array( ($slug . '-' . ++$count ), $allSlugs) );
+            $slug .= '-' . $count;
+        }
+        return $slug;
     }
 }

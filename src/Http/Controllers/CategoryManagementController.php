@@ -51,15 +51,26 @@ class CategoryManagementController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
+        dd($category->article->count());
         if ($category) {
-            $category->delete();
-            $status = [
-                'status' => 'ok',
-                'message' => 'success',
-                'data' => "Category deleted successfully ",
-            ];
+            if($category->article->count() > 0) {
+                $status = [
+                    'status' => 'notok',
+                    'message' => 'error',
+                    'data' => "<strong>Error!</strong>, Category is related to one or more Articles",
+                ];
 
-            return response()->json($status);
+                return response()->json($status);
+            } else {
+                $category->delete();
+                $status = [
+                    'status' => 'ok',
+                    'message' => 'success',
+                    'data' => "Category deleted successfully ",
+                ];
+
+                return response()->json($status);
+            }            
         }
     }
 }

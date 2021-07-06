@@ -1,4 +1,4 @@
-<?php $title = "List all Categories";?>
+<?php $title = "List all Articles";?>
 @extends('knowledge-base::layouts.backend')
 
 @section('content')
@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="float-right mb-4">
-                        <a href="{{ route('article.create') }}" class="btn btn-sm btn-primary pull-right"> Add Category</a>
+                        <a href="{{ route('article.create') }}" class="btn btn-sm btn-primary pull-right"> Add Article</a>
                     </div>
                 </div>
             </div>

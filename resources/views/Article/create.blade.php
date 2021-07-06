@@ -38,6 +38,11 @@
                         <label for="content">Content<span class="text-danger">*</span>:</label>                        
                         <textarea type="text" name="content" id="content" placeholder="content" class="form-control"></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="status">Status<span class="text-danger">*</span>:</label>                        
+                        <label><input type="radio" name="status" value="0">Active</label>
+                        <label><input type="radio" name="status" value="1">Inactive</label>
+                    </div>
                     
                 </div>
                 <div class="col-xs-12 col-sm-12 cl-md-12">

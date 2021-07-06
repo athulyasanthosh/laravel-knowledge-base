@@ -38,7 +38,12 @@
                     <div class="form-group">
                         <label for="content">Content<span class="text-danger">*</span>:</label>                        
                         <textarea type="text" name="content" id="content" placeholder="content" class="form-control">{{ $article->content }}</textarea>
-                    </div>                    
+                    </div>  
+                    <div class="form-group">
+                        <label for="status">Status<span class="text-danger">*</span>:</label>                        
+                        <label><input type="radio" name="status" value="0" {{ $article->status == 0? 'checked': ''}}>Active</label>
+                        <label><input type="radio" name="status" value="1" {{ $article->status == 1? 'checked': ''}}>Inactive</label>
+                    </div>                  
                 </div>
                 <div class="col-xs-12 col-sm-12 cl-md-12">
                     <button type="submit" class="btn btn-primary w-25">Save</button>

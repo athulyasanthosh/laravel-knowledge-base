@@ -1,4 +1,4 @@
-<?php $title = "Add new FAQ Category";?>
+<?php $title = "Add new Category";?>
 @extends('knowledge-base::layouts.backend')
 
 @section('content')
