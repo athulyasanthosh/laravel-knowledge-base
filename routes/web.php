@@ -2,6 +2,7 @@
 
 use Athulya\LaravelKnowledgeBase\Http\Controllers\ArticleManagementController;
 use Athulya\LaravelKnowledgeBase\Http\Controllers\CategoryManagementController;
+use Athulya\LaravelKnowledgeBase\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::macro('category',function(string $prefix){
@@ -25,4 +26,14 @@ Route::macro('article',function(string $prefix){
         Route::delete('/destroy/{article}', [ArticleManagementController::class,'destroy'])->name('article.destroy');
     });
 });
+
+Route::macro('knowledgeBase',function(string $prefix){
+    Route::prefix($prefix)->group(function(){
+        Route::get('/', [HomeController::class,'index'])->name('home.index');   
+        Route::post('/', [HomeController::class,'index'])->name('home.index');   
+        Route::post('/search', [HomeController::class,'search'])->name('home.search');  
+        Route::get('/articleDetail/{article-slug}', [HomeController::class,'articleDetail'])->name('article.details');
+    });
+});
+
 ?>
