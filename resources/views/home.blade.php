@@ -69,8 +69,9 @@
                                             </div>
                                             @endif
                                             <ul>
-                                                @forelse($category->article as $articleData)
-                                                    <li><a href="{{ route('article.details', $articleData->id) }}">{{ $articleData->article_name }}</a></li>
+                                                @php $urlPart = Str::slug($category->category_name); @endphp
+                                                @forelse($category->article as $articleData)                                                
+                                                    <li><a href="{{ route('article.details',[$urlPart,$articleData->slug]) }}">{{ $articleData->article_name }}</a></li>
                                                 @empty
                                                     <div class="text-muted">No records found.</div>
                                                 @endforelse
@@ -87,29 +88,33 @@
                                 @endforelse
                             @else
                             @forelse($articleList as $article)
+                            @php $urlPart = Str::slug($article->category->category_name); @endphp
                             <div class="col-md-12">
-                                <?php /*
-                                <li><a href="{{ route('article.details',$article->slug) }}">{{ $article->article_name }}</a></li>*/ ?>
-                            </div>
+                                <li><a href="{{ route('article.details',[$urlPart,$article->slug]) }}">{{ $article->article_name }}</a></li>
+                            </div>                            
                             @empty
                                 <div class="text-muted">No records found.</div>
                             @endforelse
+                            <div class="col-md-12">{{ $articleList->links() }}</div>
                             @endif
                         </div>
+                        
                     </div>
                     <div class="col-md-4">
                         <h6>Latest Articles</h6>
                         <ul>
                             @forelse($latestArticle as $articleData)
-                                <?php /*<li><a href="{{ route('article.details',$articleData->slug) }}">{{ $articleData->article_name }}</a></li> */?>
+                            @php $urlPart = Str::slug($articleData->category->category_name); @endphp
+                               <li><a href="{{ route('article.details',[$urlPart,$articleData->slug]) }}">{{ $articleData->article_name }}</a></li>
                             @empty
                                 <div class="text-muted">No records found.</div>
                             @endforelse
                         </ul>
                     </div>
                 </div>
+                
                </div>
-            </div>
+            </div>            
         </div>
     </div>
     

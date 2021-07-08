@@ -5,8 +5,9 @@
     <div class="container bg-light">
         <div class="row">
             <div class="col-md-12">
-                <strong>{{ $article->article_name }}</strong>
+                <h5><strong>{{ $article->article_name }}</strong></h5>
                 <p>{{ $article->content }}</p>
+                <div>Author: {{ $article->author }}</div>
             </div>
         </div>
     </div>
