@@ -49,17 +49,18 @@ class HomeController extends Controller
         return view('knowledge-base::details', compact('article'));
     }
 
-    public function voting(Request $request) {      
-        
+    public function voting(Request $request)
+    {
         $id = $request->id;
         $vote = $request->vote;
         $cookie = Cookie::forever('vote', $vote);
+
         return response('view')->withCookie($cookie);
         
 
         //cookie()::queue('vote', $vote, time() + ( 365 * 24 * 60 * 60));
-       // cookie('vote', $vote, time() + ( 365 * 24 * 60 * 60));
-       // $type = $request->cookie('vote');
+        // cookie('vote', $vote, time() + ( 365 * 24 * 60 * 60));
+        // $type = $request->cookie('vote');
         //dd($type);
         //$this->setCookie();
         $article = Article::find($id);
@@ -69,23 +70,26 @@ class HomeController extends Controller
         $type = Cookie::get('vote');
         
         
-        if($vote = "like") {
+        if ($vote = "like") {
             $data = [
-                'likes' => $request->likes + 1
+                'likes' => $request->likes + 1,
             ];
-        } else {            
+        } else {
             $data = [
-                'dislikes' => $request->dislikes + 1
+                'dislikes' => $request->dislikes + 1,
             ];
         }
         Article::where('id', $id)->update($data);
+
         return response('view')->withCookie($cookie);
     }
 
-    public function setCookie(Request $request){
+    public function setCookie(Request $request)
+    {
         //dd('hi');
         $response = new Response('Hello World');
         $response->withCookie(cookie('vote', 'hello'));
+
         return $response;
-     }
+    }
 }
