@@ -4,7 +4,9 @@ namespace Athulya\LaravelKnowledgeBase\Http\Controllers;
 use Athulya\LaravelKnowledgeBase\Models\Article;
 use Athulya\LaravelKnowledgeBase\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Cookie;
 
 class HomeController extends Controller
 {
@@ -46,4 +48,44 @@ class HomeController extends Controller
 
         return view('knowledge-base::details', compact('article'));
     }
+
+    public function voting(Request $request) {      
+        
+        $id = $request->id;
+        $vote = $request->vote;
+        $cookie = Cookie::forever('vote', $vote);
+        return response('view')->withCookie($cookie);
+        
+
+        //cookie()::queue('vote', $vote, time() + ( 365 * 24 * 60 * 60));
+       // cookie('vote', $vote, time() + ( 365 * 24 * 60 * 60));
+       // $type = $request->cookie('vote');
+        //dd($type);
+        //$this->setCookie();
+        $article = Article::find($id);
+        //Cookie::queue('vote', $vote, time() + ( 365 * 24 * 60 * 60));
+        //Cookie::forever('vote', $vote);
+        //$type = Cookie::get('vote');
+        $type = Cookie::get('vote');
+        
+        
+        if($vote = "like") {
+            $data = [
+                'likes' => $request->likes + 1
+            ];
+        } else {            
+            $data = [
+                'dislikes' => $request->dislikes + 1
+            ];
+        }
+        Article::where('id', $id)->update($data);
+        return response('view')->withCookie($cookie);
+    }
+
+    public function setCookie(Request $request){
+        //dd('hi');
+        $response = new Response('Hello World');
+        $response->withCookie(cookie('vote', 'hello'));
+        return $response;
+     }
 }

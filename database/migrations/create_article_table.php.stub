@@ -16,6 +16,8 @@ class CreateArticleTable extends Migration
             $table->string('author');
             $table->text('content');
             $table->boolean('status')->default(0);
+            $table->integer('likes')->default(0);            
+            $table->integer('dislikes')->default(0);
             $table->timestamps();
         });
     }

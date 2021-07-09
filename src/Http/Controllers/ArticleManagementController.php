@@ -84,7 +84,7 @@ class ArticleManagementController extends Controller
         $slug = Str::slug($name);
         $article = Article::where('slug', $slug)->get();
         $allSlugs = Article::where('slug', 'like', $slug.'%')->pluck('slug')->toArray();
-        //dd($allSlugs);
+        
         if ($article->count() > 0 && in_array($slug, $allSlugs)) {
             $count = 0;
             while (in_array(($slug . '-' . ++$count), $allSlugs));
