@@ -54,33 +54,34 @@ class HomeController extends Controller
         $id = $request->id;
         $vote = $request->vote;
         $cookie = Cookie::forever('vote-'.$id, $vote);
-        $article = Article::find($id);        
+        $article = Article::find($id);
         $type = Cookie::get('vote-'.$id);
-        if($type) {
+        if ($type) {
             if ($vote == "like" && $type == 'dislike') {
                 $data = [
                     'likes' => $article->likes + 1,
-                    'dislikes' => $article->dislikes - 1
+                    'dislikes' => $article->dislikes - 1,
                 ];
-            } else if($vote == "dislike" && $type == "like") {
+            } elseif ($vote == "dislike" && $type == "like") {
                 $data = [
                     'likes' => $article->likes - 1,
                     'dislikes' => $article->dislikes + 1,
                 ];
-            } 
+            }
         } else {
             if ($vote == "like") {
                 $data = [
                     'likes' => $article->likes + 1,
-                ];  
-            } else if ($vote == "dislike"){
+                ];
+            } elseif ($vote == "dislike") {
                 $data = [
                     'dislikes' => $article->likes + 1,
-                ];  
+                ];
             }
         }
         
         Article::where('id', $id)->update($data);
+
         return response('view')->withCookie($cookie);
-    }    
+    }
 }
