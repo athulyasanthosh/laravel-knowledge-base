@@ -35,4 +35,15 @@ return [
     */
     'article_count_show' => true,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Like and dislike feature Display Setting
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the settings for display like and dislike feature in article details page. Default set to true for displaying.
+    | You can change these default to false for hiding as per your needs.
+    |
+    */
+    'like_and_dislike' => true,
+
 ];

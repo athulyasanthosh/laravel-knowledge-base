@@ -53,43 +53,34 @@ class HomeController extends Controller
     {
         $id = $request->id;
         $vote = $request->vote;
-        $cookie = Cookie::forever('vote', $vote);
-
-        return response('view')->withCookie($cookie);
-        
-
-        //cookie()::queue('vote', $vote, time() + ( 365 * 24 * 60 * 60));
-        // cookie('vote', $vote, time() + ( 365 * 24 * 60 * 60));
-        // $type = $request->cookie('vote');
-        //dd($type);
-        //$this->setCookie();
-        $article = Article::find($id);
-        //Cookie::queue('vote', $vote, time() + ( 365 * 24 * 60 * 60));
-        //Cookie::forever('vote', $vote);
-        //$type = Cookie::get('vote');
-        $type = Cookie::get('vote');
-        
-        
-        if ($vote = "like") {
-            $data = [
-                'likes' => $request->likes + 1,
-            ];
+        $cookie = Cookie::forever('vote-'.$id, $vote);
+        $article = Article::find($id);        
+        $type = Cookie::get('vote-'.$id);
+        if($type) {
+            if ($vote == "like" && $type == 'dislike') {
+                $data = [
+                    'likes' => $article->likes + 1,
+                    'dislikes' => $article->dislikes - 1
+                ];
+            } else if($vote == "dislike" && $type == "like") {
+                $data = [
+                    'likes' => $article->likes - 1,
+                    'dislikes' => $article->dislikes + 1,
+                ];
+            } 
         } else {
-            $data = [
-                'dislikes' => $request->dislikes + 1,
-            ];
+            if ($vote == "like") {
+                $data = [
+                    'likes' => $article->likes + 1,
+                ];  
+            } else if ($vote == "dislike"){
+                $data = [
+                    'dislikes' => $article->likes + 1,
+                ];  
+            }
         }
+        
         Article::where('id', $id)->update($data);
-
         return response('view')->withCookie($cookie);
-    }
-
-    public function setCookie(Request $request)
-    {
-        //dd('hi');
-        $response = new Response('Hello World');
-        $response->withCookie(cookie('vote', 'hello'));
-
-        return $response;
-    }
+    }    
 }
