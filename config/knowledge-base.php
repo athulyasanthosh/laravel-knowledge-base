@@ -46,4 +46,14 @@ return [
     */
     'like_and_dislike' => true,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Home page sidebar Display Setting
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the settings for display sidebar feature in article listing page. Default set to true for displaying.
+    | You can change these default to false for hiding as per your needs.
+    |
+    */
+    'show_sidebar' => true,
 ];

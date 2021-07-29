@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -18,19 +19,19 @@ class HomeController extends Controller
         if (isset($request->category_id) && isset($request->keyword)) {
             $articleList = Article::where('category_id', $request->category_id)
                         ->where('article_name', 'like', '%'.$request->keyword.'%')
-                        ->paginate(2);
+                        ->simplePaginate(2);
             $articleList->appends(['category_id' => $request->category_id, 'article_name' => $request->keyword]);
             dd($articleList);
         //$articleList->appends(['search' => $request->category_id]);
                         //->get();
         } elseif (isset($request->keyword)) {
             $articleList = Article::where('article_name', 'like', '%'.$request->keyword.'%')
-                        ->paginate(2);
+                        ->simplePaginate(2);
             $articleList->appends(['article_name' => $request->keyword]);
         //->get();
         } elseif (isset($request->category_id)) {
             $articleList = Article::where('category_id', $request->category_id)
-                        ->paginate(2);
+                        ->simplePaginate(2);
             $articleList->appends(['category_id' => $request->category_id]);
             // ->get();
         }
@@ -45,8 +46,11 @@ class HomeController extends Controller
     public function articleDetail($category, $slug)
     {
         $article = Article::where('slug', $slug)->first();
-
-        return view('knowledge-base::details', compact('article'));
+        
+        $previous = Article::where('id', '<', $article->id)->where('category_id', $article->category_id)->orderBy('id', 'desc')->first();
+        $next = Article::where('id', '>', $article->id)->where('category_id', $article->category_id)->first();
+                
+        return view('knowledge-base::details', compact('article', 'previous', 'next'));
     }
 
     public function voting(Request $request)
