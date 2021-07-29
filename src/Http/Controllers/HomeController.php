@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
