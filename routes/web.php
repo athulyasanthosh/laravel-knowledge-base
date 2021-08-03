@@ -32,7 +32,7 @@ Route::macro('knowledgeBase',function(string $prefix){
         Route::get('/', [HomeController::class,'index'])->name('home.index');   
         Route::post('/', [HomeController::class,'index'])->name('home.index');   
         Route::post('/search', [HomeController::class,'search'])->name('home.search');  
-        Route::get('/articleDetail/{category}/{slug}', [HomeController::class,'articleDetail'])->name('article.details');
+        Route::get('/article-detail/{category}/{slug}', [HomeController::class,'articleDetail'])->name('article.details');
         Route::post('/voting', [HomeController::class,'voting'])->name('home.voting');  
     });
 });

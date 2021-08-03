@@ -4,15 +4,13 @@ namespace Athulya\LaravelKnowledgeBase\Http\Controllers;
 use Athulya\LaravelKnowledgeBase\Models\Article;
 use Athulya\LaravelKnowledgeBase\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Cookie;
 
 class HomeController extends Controller
 {
     public function index(Request $request)
-    {
-        //dd($request->category_id);
+    {        
         $articleList = '';
         $categories = '';
         if (isset($request->category_id) && isset($request->keyword)) {
@@ -20,7 +18,7 @@ class HomeController extends Controller
                         ->where('article_name', 'like', '%'.$request->keyword.'%')
                         ->simplePaginate(2);
             $articleList->appends(['category_id' => $request->category_id, 'article_name' => $request->keyword]);
-            dd($articleList);
+            
         //$articleList->appends(['search' => $request->category_id]);
                         //->get();
         } elseif (isset($request->keyword)) {
@@ -34,22 +32,53 @@ class HomeController extends Controller
             $articleList->appends(['category_id' => $request->category_id]);
             // ->get();
         }
-        $categories = Category::latest()->get();
-        $latestArticle = Article::orderBy('created_at', 'DESC')
+        $categories = Category::latest()->get();        
+
+        $latestArticle = Article::orderBy('likes', 'DESC')
                         ->limit(5)
                         ->get();
-
-        return view('knowledge-base::home', compact('categories', 'articleList', 'latestArticle'));
+        
+        if($request->expectsJson())  {
+            $datas = [
+                'categories' => $categories,
+                'articleList' => $articleList,
+                'latestArticle' => $latestArticle
+            ];
+            $response = [
+                'success' => true,
+                'data'    => $datas,
+                'message' => 'Success',
+            ];
+    
+            return response()->json($response, 200);
+        } else {
+            return view('knowledge-base::home', compact('categories', 'articleList', 'latestArticle'));
+        }        
     }
 
-    public function articleDetail($category, $slug)
+    public function articleDetail($category, $slug,Request $request)
     {
         $article = Article::where('slug', $slug)->first();
         
         $previous = Article::where('id', '<', $article->id)->where('category_id', $article->category_id)->orderBy('id', 'desc')->first();
         $next = Article::where('id', '>', $article->id)->where('category_id', $article->category_id)->first();
-                
-        return view('knowledge-base::details', compact('article', 'previous', 'next'));
+        
+        if($request->expectsJson())  {
+            $datas = [
+                'article' => $article,
+                'previous' => $previous,
+                'next' => $next
+            ];
+            $response = [
+                'success' => true,
+                'data'    => $datas,
+                'message' => 'Success',
+            ];
+    
+            return response()->json($response, 200);
+        } else {
+            return view('knowledge-base::details', compact('article', 'previous', 'next'));
+        }        
     }
 
     public function voting(Request $request)
@@ -59,6 +88,7 @@ class HomeController extends Controller
         $cookie = Cookie::forever('vote-'.$id, $vote);
         $article = Article::find($id);
         $type = Cookie::get('vote-'.$id);
+        $data = [];
         if ($type) {
             if ($vote == "like" && $type == 'dislike') {
                 $data = [
@@ -70,6 +100,13 @@ class HomeController extends Controller
                     'likes' => $article->likes - 1,
                     'dislikes' => $article->dislikes + 1,
                 ];
+            } elseif($vote == $type) {
+                $response = [
+                    'success' => false,
+                    'message' => 'Same vote request',
+                ];
+        
+                return response()->json($response, 200);
             }
         } else {
             if ($vote == "like") {
@@ -82,9 +119,30 @@ class HomeController extends Controller
                 ];
             }
         }
-        
         Article::where('id', $id)->update($data);
-
+        if(!$request->ajax() && $request->expectsJson()) {
+            $response = [
+                'success' => true,
+                'message' => 'Voting has been done!',
+            ];
+    
+            return response()->json($response, 200)->withCookie($cookie);
+        }
+        
         return response('view')->withCookie($cookie);
+    }  
+    
+    public function popular() {
+        $latestArticle = Article::orderBy('likes', 'DESC')
+                        ->limit(5)
+                        ->get();
+                        
+        $response = [
+            'success' => true,
+            'data'    => $latestArticle,
+            'message' => 'Success',
+        ];
+
+        return response()->json($response, 200);
     }
 }
