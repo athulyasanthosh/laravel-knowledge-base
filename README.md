@@ -66,13 +66,6 @@ This is the contents of the published config file:
 
 ```php
 return [
-];
-```
-
-This is the contents of the published config file:
-```bash
-return [
-
     /*
     |--------------------------------------------------------------------------
     | Home page title text Setting
@@ -129,6 +122,7 @@ return [
     'show_sidebar' => true,
 ];
 ```
+
 
 ## Usage
 
