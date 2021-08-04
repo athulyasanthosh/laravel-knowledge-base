@@ -50,8 +50,7 @@ class CategoryManagementController extends Controller
 
     public function destroy($id)
     {
-        $category = Category::find($id);
-        dd($category->article->count());
+        $category = Category::find($id);        
         if ($category) {
             if ($category->article->count() > 0) {
                 $status = [

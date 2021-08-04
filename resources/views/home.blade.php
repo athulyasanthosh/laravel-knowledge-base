@@ -74,8 +74,10 @@ $sidebar = config('knowledge-base.show_sidebar');
                                     @endif
                                     <ul>
                                         @php $urlPart = Str::slug($category->category_name); @endphp
-                                        @forelse($category->article as $articleData)                                                
-                                            <li><a href="{{ route('article.details',[$urlPart,$articleData->slug]) }}">{{ $articleData->article_name }}</a></li>
+                                        @forelse($category->article as $articleData)  
+                                            @if($articleData->status == 0)                                              
+                                                <li><a href="{{ route('article.details',[$urlPart,$articleData->slug]) }}">{{ $articleData->article_name }}</a></li>
+                                            @endif
                                         @empty
                                             <div class="text-muted">No records found.</div>
                                         @endforelse

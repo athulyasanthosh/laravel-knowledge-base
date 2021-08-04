@@ -16,20 +16,24 @@ class HomeController extends Controller
         if (isset($request->category_id) && isset($request->keyword)) {
             $articleList = Article::where('category_id', $request->category_id)
                         ->where('article_name', 'like', '%'.$request->keyword.'%')
+                        ->where('status', 0)
                         ->simplePaginate(2);
             $articleList->appends(['category_id' => $request->category_id, 'article_name' => $request->keyword]);
         } elseif (isset($request->keyword)) {
             $articleList = Article::where('article_name', 'like', '%'.$request->keyword.'%')
+                        ->where('status', 0)
                         ->simplePaginate(2);
             $articleList->appends(['article_name' => $request->keyword]);
         } elseif (isset($request->category_id)) {
             $articleList = Article::where('category_id', $request->category_id)
+                        ->where('status', 0)
                         ->simplePaginate(2);
             $articleList->appends(['category_id' => $request->category_id]);
         }
         $categories = Category::latest()->get();
 
         $latestArticle = Article::orderBy('likes', 'DESC')
+                        ->where('status', 0)
                         ->limit(5)
                         ->get();
         

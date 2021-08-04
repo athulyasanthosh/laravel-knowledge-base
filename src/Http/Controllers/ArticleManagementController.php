@@ -12,7 +12,7 @@ class ArticleManagementController extends Controller
 {
     public function index()
     {
-        $articles = Article::where('status', 0)->get();
+        $articles = Article::all();
 
         return view('knowledge-base::article.index', compact('articles'));
     }
