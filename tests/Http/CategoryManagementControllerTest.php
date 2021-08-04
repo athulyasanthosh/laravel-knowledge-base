@@ -14,11 +14,11 @@ class CategoryManagementControllerTest extends TestCase
         Category::create([
             'category_name' => 'general',
         ]);
-        Route::category('test');
-        $this->get('/test/create')->assertOk();
-        /*$this->assertDatabaseCount('categories', 1);
+        // Route::category('test');
+        // $this->get('/test/create')->assertOk();
+        $this->assertDatabaseCount('categories', 1);
 
-        $first = Category::first();
+        /*$first = Category::first();
         $first->update(['category_name' => 'politics']);
 
         $this->assertDatabaseCount('categories', 1);
