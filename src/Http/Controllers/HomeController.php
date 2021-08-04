@@ -18,19 +18,18 @@ class HomeController extends Controller
                         ->where('article_name', 'like', '%'.$request->keyword.'%')
                         ->simplePaginate(2);
             $articleList->appends(['category_id' => $request->category_id, 'article_name' => $request->keyword]);
-            
-        //$articleList->appends(['search' => $request->category_id]);
-                        //->get();
+  
+        
         } elseif (isset($request->keyword)) {
             $articleList = Article::where('article_name', 'like', '%'.$request->keyword.'%')
                         ->simplePaginate(2);
             $articleList->appends(['article_name' => $request->keyword]);
-        //->get();
+        
         } elseif (isset($request->category_id)) {
             $articleList = Article::where('category_id', $request->category_id)
                         ->simplePaginate(2);
             $articleList->appends(['category_id' => $request->category_id]);
-            // ->get();
+            
         }
         $categories = Category::latest()->get();
 
