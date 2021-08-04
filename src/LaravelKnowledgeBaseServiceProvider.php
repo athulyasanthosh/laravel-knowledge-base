@@ -19,6 +19,7 @@ class LaravelKnowledgeBaseServiceProvider extends PackageServiceProvider
             ->name('laravel-knowledge-base')
             ->hasConfigFile()
             ->hasViews()
+            ->hasAssets()
             ->hasRoutes(['web', 'api'])
             ->hasMigration('create_article_table')
             ->hasMigration('create_category_table')
