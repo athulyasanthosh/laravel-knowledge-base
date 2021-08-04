@@ -31,7 +31,6 @@ class HomeController extends Controller
             $articleList->appends(['category_id' => $request->category_id]);
         }
         $categories = Category::latest()->get();
-
         $latestArticle = Article::orderBy('likes', 'DESC')
                         ->where('status', 0)
                         ->limit(5)
@@ -47,8 +46,7 @@ class HomeController extends Controller
                 'success' => true,
                 'data' => $datas,
                 'message' => 'Success',
-            ];
-    
+            ];    
             return response()->json($response, 200);
         } else {
             return view('knowledge-base::home', compact('categories', 'articleList', 'latestArticle'));
@@ -57,10 +55,9 @@ class HomeController extends Controller
 
     public function articleDetail($category, $slug, Request $request)
     {
-        $article = Article::where('slug', $slug)->first();
-        
-        $previous = Article::where('id', '<', $article->id)->where('category_id', $article->category_id)->orderBy('id', 'desc')->first();
-        $next = Article::where('id', '>', $article->id)->where('category_id', $article->category_id)->first();
+        $article = Article::where('slug', $slug)->first();        
+        $previous = Article::where('id', '<', $article->id)->where('status', 0)->where('category_id', $article->category_id)->orderBy('id', 'desc')->first();
+        $next = Article::where('id', '>', $article->id)->where('status', 0)->where('category_id', $article->category_id)->first();
         
         if ($request->expectsJson()) {
             $datas = [
@@ -72,8 +69,7 @@ class HomeController extends Controller
                 'success' => true,
                 'data' => $datas,
                 'message' => 'Success',
-            ];
-    
+            ];    
             return response()->json($response, 200);
         } else {
             return view('knowledge-base::details', compact('article', 'previous', 'next'));
@@ -103,8 +99,7 @@ class HomeController extends Controller
                 $response = [
                     'success' => false,
                     'message' => 'Same vote request',
-                ];
-        
+                ];        
                 return response()->json($response, 200);
             }
         } else {
@@ -123,17 +118,16 @@ class HomeController extends Controller
             $response = [
                 'success' => true,
                 'message' => 'Voting has been done!',
-            ];
-    
+            ];    
             return response()->json($response, 200)->withCookie($cookie);
-        }
-        
+        }        
         return response('view')->withCookie($cookie);
     }
     
     public function popular()
     {
         $latestArticle = Article::orderBy('likes', 'DESC')
+                        ->where('status', 0)
                         ->limit(5)
                         ->get();
                         
@@ -142,7 +136,6 @@ class HomeController extends Controller
             'data' => $latestArticle,
             'message' => 'Success',
         ];
-
         return response()->json($response, 200);
     }
 }

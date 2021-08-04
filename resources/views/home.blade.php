@@ -1,7 +1,7 @@
-<?php 
+@php 
 $title = config('knowledge-base.home_page_title');
 $sidebar = config('knowledge-base.show_sidebar');
-?>
+@endphp
 @extends('knowledge-base::layouts.backend')
 @section('style')
     <style type="text/css">
@@ -27,11 +27,11 @@ $sidebar = config('knowledge-base.show_sidebar');
 <div class="col-md-12">
     <div class="container bg-light">
         <div class="row">
-            <?php if($sidebar): ?>
+            @if($sidebar)
             <div class="col-md-8">
-            <?php else: ?>
+            @else
             <div class="col-md-12">
-            <?php endif;?>
+            @endif
                 <div class="row">
                     <div class="col-md-12">
                         <h4> {{ $title }}</h4>
@@ -106,7 +106,7 @@ $sidebar = config('knowledge-base.show_sidebar');
                 </div>
                 
             </div>
-            <?php if($sidebar): ?>
+            @if($sidebar)
             <div class="col-md-4">
                 <h6>Latest Articles</h6>
                 <ul>
@@ -118,9 +118,8 @@ $sidebar = config('knowledge-base.show_sidebar');
                 @endforelse
                 </ul>
             </div>
-            <?php endif; ?>
-        </div>
-        
+            @endif
+        </div>        
     </div>
  </div> 
     
