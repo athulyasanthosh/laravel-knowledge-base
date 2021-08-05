@@ -13,7 +13,7 @@ class CategoryManagementControllerTest extends TestCase
             'category_name' => 'general',
         ]);
         
-        $this->assertDatabaseCount('categories', 1);        
+        $this->assertDatabaseCount('categories', 1);
     }
 
     /** @test */

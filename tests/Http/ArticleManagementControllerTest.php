@@ -21,7 +21,7 @@ class ArticleManagementControllerTest extends TestCase
             'content' => 'Test content',
         ]);
 
-        $this->assertDatabaseCount('articles', 1);        
+        $this->assertDatabaseCount('articles', 1);
     }
 
     /** @test */
