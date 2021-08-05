@@ -2,8 +2,8 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/athulya/laravel-knowledge-base.svg?style=flat-square)](https://packagist.org/packages/athulya/laravel-knowledge-base)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/athulyasanthosh/laravel-knowledge-base/run-tests?label=tests)](https://github.com/athulyasanthosh/laravel-knowledge-base/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/athulya/laravel-knowledge-base/Check%20&%20fix%20styling?label=code%20style)](https://github.com/athulya/laravel-knowledge-base/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/athulya/laravel-knowledge-base.svg?style=flat-square)](https://packagist.org/packages/athulya/laravel-knowledge-base)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/athulyasanthosh/laravel-knowledge-base/Check%20&%20fix%20styling?label=code%20style)](https://github.com/athulyasanthosh/laravel-knowledge-base/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/athulyasanthosh/laravel-knowledge-base.svg?style=flat-square)](https://packagist.org/packages/athulyasanthosh/laravel-knowledge-base)
 
 
 ## Installation
