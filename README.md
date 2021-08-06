@@ -7,7 +7,7 @@
 
 ## Description 
 
-
+```bash
 This package can be used to integrate knowledge base to your Laravel application. Package installation and publishing commands are given below, please refer that.
 Backend section contains category and article management system. (add, edit, list and delete)
 
@@ -23,9 +23,7 @@ API to search articles by category.
 API to get details page with next and previous links.
 Article voting feature using API.
 
-
-
-
+```
 
 ## Installation
 
