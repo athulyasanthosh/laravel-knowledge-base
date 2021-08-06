@@ -12,7 +12,7 @@
 You can install the package via composer:
 
 ```bash
-composer require athulya/laravel-knowledge-base
+<ul><li>composer require athulya/laravel-knowledge-base</li></ul>
 ```
 
 You can publish and run the migrations with:
