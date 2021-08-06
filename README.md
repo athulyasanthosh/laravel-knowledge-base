@@ -17,10 +17,10 @@ Like and dislike feature for voting in article details page, it can be show/hide
 Config to control the landing page title, category title, show/hide article count, like and dislike feature and sidebar show/hide.
 
 This package contains an API section, following are the feature in that section
-•	API to list all articles and popular articles separately.
-•	API to search articles by category.
-•	API to get details page with next and previous links.
-•	Article voting feature using API.
+•API to list all articles and popular articles separately.
+•API to search articles by category.
+•API to get details page with next and previous links.
+•Article voting feature using API.
 
 
 
