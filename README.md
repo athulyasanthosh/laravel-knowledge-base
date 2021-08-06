@@ -11,6 +11,12 @@
 This package can be used to integrate knowledge base to your Laravel application. Package installation and publishing commands are given below, please refer that.
 Backend section contains category and article management system. (add, edit, list and delete)
 Front end features are described below:
+Landing page with article listing and, they contain article search options such as, category based and keyword-based searching.
+Search listing page contains article title and pagination. Each article contains link to their detail page.
+Like and dislike feature for voting in article details page, it can be show/hide using config settings.
+•	Config to control the landing page title, category title, show/hide article count, like and dislike feature and sidebar show/hide.
+
+
 ```
 
 ## Installation
