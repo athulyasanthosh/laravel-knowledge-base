@@ -5,19 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/athulyasanthosh/laravel-knowledge-base/Check%20&%20fix%20styling?label=code%20style)](https://github.com/athulyasanthosh/laravel-knowledge-base/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/athulya/laravel-knowledge-base.svg?style=flat-square)](https://packagist.org/packages/athulya/laravel-knowledge-base)
 
-## Description 
-This package can be used to integrate knowledge base to your Laravel application. Package installation and publishing commands are given below, please refer that.
-Backend section contains category and article management system. (add, edit, and delete)
-Front end features are described below:
-•	 Landing page with article listing and, they contain article search options such as, category based and keyword-based searching.
-•	Search listing page contains article title and pagination. Each article contains link to their detail page.
-•	Like and dislike feature for voting in article details page, it can be show/hide using config settings.
-•	Config to control the landing page title, category title, show/hide article count, like and dislike feature and sidebar show/hide.
-This package contains an API section, following are the feature in that section
-•	API to list all articles and popular articles separately.
-•	API to search articles by category.
-•	API to get details page with next and previous links.
-•	Article voting feature using API.
+
 
 ## Installation
 
