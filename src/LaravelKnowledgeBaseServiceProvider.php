@@ -3,6 +3,9 @@
 namespace Athulya\LaravelKnowledgeBase;
 
 use Athulya\LaravelKnowledgeBase\Commands\LaravelKnowledgeBaseCommand;
+use Athulya\LaravelKnowledgeBase\Http\Livewire\FrontendKnowledgeBase;
+use Athulya\LaravelKnowledgeBase\Models\Article;
+use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -20,9 +23,16 @@ class LaravelKnowledgeBaseServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasAssets()
-            ->hasRoutes(['web', 'api'])
+            ->hasRoutes(['web', 'api', 'livewire-routes'])
             ->hasMigration('create_article_table')
             ->hasMigration('create_category_table')
             ->hasCommand(LaravelKnowledgeBaseCommand::class);
+    }
+
+    public function bootingPackage()
+    {
+        Livewire::component('categories', Categories::class);
+       // Livewire::component('articles', Article::class);
+       // Livewire::component('frontendknowledgebase', FrontendKnowledgeBase::class);
     }
 }
