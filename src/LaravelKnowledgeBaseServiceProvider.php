@@ -32,7 +32,7 @@ class LaravelKnowledgeBaseServiceProvider extends PackageServiceProvider
     public function bootingPackage()
     {
         Livewire::component('categories', Categories::class);
-       // Livewire::component('articles', Article::class);
+        // Livewire::component('articles', Article::class);
        // Livewire::component('frontendknowledgebase', FrontendKnowledgeBase::class);
     }
 }
