@@ -4,8 +4,8 @@ namespace Athulya\LaravelKnowledgeBase\Http\Livewire;
 
 use Athulya\LaravelKnowledgeBase\Models\Article;
 use Athulya\LaravelKnowledgeBase\Models\Category;
-use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 class Articles extends Component
@@ -34,20 +34,20 @@ class Articles extends Component
     public function store()
     {
         $this->validate([
-            'articleName'  => 'required',
-            'author'        => 'required',
-            'content'       => 'required',
-            'categoryId'   => 'required'
+            'articleName' => 'required',
+            'author' => 'required',
+            'content' => 'required',
+            'categoryId' => 'required',
         ]);
         $slug = $this->slugGenerator($this->articleName);
         
         Article::updateOrCreate(['id' => $this->articleId], [
-            'article_name'  => $this->articleName,
-            'author'        => $this->author,
-            'category_id'   => $this->categoryId,
-            'content'       => $this->content,
-            'slug'          => $slug,
-            'status'        => $this->status
+            'article_name' => $this->articleName,
+            'author' => $this->author,
+            'category_id' => $this->categoryId,
+            'content' => $this->content,
+            'slug' => $slug,
+            'status' => $this->status,
         ]);
         session()->flash('message', 'Article Successfully Added');
         $this->emit('articleSaved');
@@ -59,7 +59,7 @@ class Articles extends Component
         $this->status = 0;
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
         $article = Article::find($id);
         $this->articleName = $article->article_name;
@@ -70,7 +70,7 @@ class Articles extends Component
         $this->status = $article->status;
     }
 
-    public function destroy($id) 
+    public function destroy($id)
     {
         Article::find($id)->delete();
         Session()->flash('message', 'Article Deleted Successfully');
@@ -94,7 +94,8 @@ class Articles extends Component
     public function render()
     {
         $categories = Category::all();
-        $articles   = Article::latest()->paginate(5);
+        $articles = Article::latest()->paginate(5);
+
         return view('knowledge-base::livewire.article.article', compact('articles', 'categories'))->layout('knowledge-base::layouts.livewire.app');
     }
 }

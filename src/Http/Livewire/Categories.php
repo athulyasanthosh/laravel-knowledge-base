@@ -4,7 +4,6 @@ namespace Athulya\LaravelKnowledgeBase\Http\Livewire;
 
 use Athulya\LaravelKnowledgeBase\Models\Category;
 use Livewire\Component;
-use Illuminate\Support\Str;
 use Livewire\WithPagination;
 
 class Categories extends Component
@@ -13,13 +12,14 @@ class Categories extends Component
     protected $paginationTheme = 'bootstrap';
     public $name;
     public $categoryId;
+
     public function create()
     {
         $this->name = '';
         $this->categoryId = 0;
     }
 
-    public function store() 
+    public function store()
     {
         $this->validate([
             'name' => 'required',
@@ -30,14 +30,14 @@ class Categories extends Component
         $this->name = '';
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
         $category = Category::find($id);
         $this->name = $category->category_name;
         $this->categoryId = $category->id;
     }
 
-    public function destroy($id) 
+    public function destroy($id)
     {
         Category::find($id)->delete();
         Session()->flash('message', 'Category Deleted Successfully');
@@ -46,6 +46,7 @@ class Categories extends Component
     public function render()
     {
         $categories = Category::latest()->paginate(2);
+
         return view('knowledge-base::livewire.category.categories', compact('categories'))->layout('knowledge-base::layouts.livewire.app');
     }
 }
