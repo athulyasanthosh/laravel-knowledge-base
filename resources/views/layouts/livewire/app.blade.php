@@ -22,7 +22,7 @@
                 @include('knowledge-base::layouts.livewire.partial.sidebar')
             </div>
             <div class="col-md-10">                
-                {{ $table }}
+                {{ $slot }}
             </div>
         </div>
     </div>

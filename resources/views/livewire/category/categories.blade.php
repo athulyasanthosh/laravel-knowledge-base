@@ -31,10 +31,8 @@
                 <td width = "50%">{{ $category->category_name }}</td>
                 <td>{{ $category->updated_at->format('Y-m-d H:i:s') }}</td>
                 <td width = "20%">
-                    <a class="btn btn-outline btn-warning" href="{{ route('category.edit',$category->id) }}" rel="nofollow">Edit</a>
-                    @csrf
-                    @method('DELETE')
-                    <a class="btn btn-outline btn-danger action-delete" data-url="{{ route('category.destroy',$category->id) }}" data-id="{{ $category->id }}" rel="nofollow">Delete</a>
+                    <a class="btn btn-outline btn-warning" href="javascript:void(0)" wire:click="edit({{$category->id}})" data-bs-toggle="modal" data-bs-target="#category" rel="nofollow">Edit</a>
+                    <a class="btn btn-outline btn-danger action-delete" href="javascript:void(0)" wire:click="destroy({{$category->id}})" rel="nofollow">Delete</a>                    
                 </td>
                 </tr>
             @empty
@@ -43,8 +41,16 @@
                 </tr>
             @endforelse
             </tbody>
-            </table>
+        </table>
+        <div class="d-flex justify-content-center">{{ $categories->links() }}</div>
         
     </div>
     @include('knowledge-base::livewire.category.popup')
 </div>
+<script>
+    document.addEventListener('livewre:load', function() {
+        livewire.on('categorySaved', () => {
+            $('#category').modal('hide');
+        })
+    })
+</script>
