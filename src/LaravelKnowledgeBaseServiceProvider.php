@@ -35,5 +35,6 @@ class LaravelKnowledgeBaseServiceProvider extends PackageServiceProvider
         Livewire::component('categories', Categories::class);
         Livewire::component('articles', Articles::class);
         Livewire::component('frontendknowledgebase', FrontendKnowledgeBase::class);
+
     }
 }
