@@ -16,7 +16,7 @@ class FrontendKnowledgeBase extends Component
     public $keyword;
     public $categories;
     public $latestArticle;
-    public $articleList;    
+    public $articleList;
 
     public function search(Request $request)
     {
@@ -26,7 +26,7 @@ class FrontendKnowledgeBase extends Component
             $this->articleList = Article::where('category_id', $this->categoryId)
                         ->where('article_name', 'like', '%'.$this->keyword.'%')
                         ->where('status', 0)
-                        ->get();            
+                        ->get();
         } elseif (isset($this->keyword)) {
             $this->articleList = Article::where('article_name', 'like', '%'.$this->keyword.'%')
                         ->where('status', 0)
@@ -34,13 +34,15 @@ class FrontendKnowledgeBase extends Component
         } elseif (isset($this->categoryId)) {
             $this->articleList = Article::where('category_id', $this->categoryId)
                         ->where('status', 0)
-                        ->get();             
-        } 
+                        ->get();
+        }
     }
+
     public function articleDetails($id)
     {
         $this->emit('getDetails', $id);
     }
+
     public function render()
     {
         $this->categories = Category::all();
@@ -51,6 +53,7 @@ class FrontendKnowledgeBase extends Component
         $categories = $this->categories;
         $articleList = $this->articleList;
         $latestArticle = $this->latestArticle;
+
         return view('knowledge-base::livewire.frontendknowledgebase', compact('categories', 'latestArticle', 'articleList'))->layout('knowledge-base::layouts.livewire.app');
     }
 }
