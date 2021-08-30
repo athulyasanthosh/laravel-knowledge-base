@@ -23,7 +23,7 @@ $title = config('knowledge-base.home_page_title');
 $sidebar = config('knowledge-base.show_sidebar');
 @endphp
 
-<div class="col-md-12">
+<div class="col-md-12 test-class">
     <div class="container bg-light">
         <div class="row">
             @if($sidebar)
@@ -39,22 +39,20 @@ $sidebar = config('knowledge-base.show_sidebar');
                 </div>
                 <div class="row">
                     <div class="col-md-12"> 
-                        <form method="POST" action="{{ route('home.index') }}">
-                            @csrf
+                       
                             <div class="input-group">
-                                <select class="form-select form-control category-select" name="category_id">
+                                <select class="form-select form-control category-select" name="category_id" wire:model="categoryId">
                                     <option value="">Select Category</option>                            
                                     @foreach($categories as $category)                            
                                     <option value="{{$category->id}}" {{ (old('category_id') == $category->id )? 'selected': ''; }}>{{$category->category_name}}</option>
                                     @endforeach
                                 </select>
                                 <input type="text" name="keyword" class="form-control rounded" placeholder="Search" aria-label="Search"
-                            aria-describedby="search-addon" />
+                            aria-describedby="search-addon" wire:model="keyword" />
                                 <span class="input-group-text border-0" id="search-addon">
-                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>                                        
+                                <button type="button" class="btn btn-default" wire:click="search"><i class="fas fa-search"></i></button>                                        
                                 </span>
                             </div>
-                        </form>
                     </div>
                 </div>
                 <div class="row list-container">
@@ -75,7 +73,7 @@ $sidebar = config('knowledge-base.show_sidebar');
                                         @php $urlPart = Str::slug($category->category_name); @endphp
                                         @forelse($category->article as $articleData)  
                                             @if($articleData->status == 0)                                              
-                                                <li><a href="{{ route('article.details',[$urlPart,$articleData->slug]) }}">{{ $articleData->article_name }}</a></li>
+                                                <li><a href="{{ route('livewire.article.details',[$urlPart,$articleData->slug]) }}">{{ $articleData->article_name }}</a></li>
                                             @endif
                                         @empty
                                             <div class="text-muted">No records found.</div>
@@ -92,15 +90,17 @@ $sidebar = config('knowledge-base.show_sidebar');
                             <div class="text-muted">No records found.</div>
                         @endforelse
                     @else
-                    {{-- @forelse($articleList as $article)
+                    @forelse($articleList as $article)
                     @php $urlPart = Str::slug($article->category->category_name); @endphp
                     <div class="col-md-12">
                         <li><a href="{{ route('article.details',[$urlPart,$article->slug]) }}">{{ $article->article_name }}</a></li>
                     </div>                            
                     @empty
                         <div class="text-muted">No records found.</div>
-                    @endforelse --}}
+                    @endforelse
+                    <?php /*
                     <div class="col-md-12" style="margin-top: 20px;">{{ $articleList->links() }}</div>
+                    */?>
                     @endif
                 </div>
                 
