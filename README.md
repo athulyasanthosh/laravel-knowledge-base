@@ -34,7 +34,7 @@ composer require athulya/laravel-knowledge-base
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="Athulya\LaravelKnowledgeBase\LaravelKnowledgeBaseServiceProvider" --tag="laravel-knowledge-base-migrations"
+php artisan vendor:publish --provider="Athulya\LaravelKnowledgeBase\LaravelKnowledgeBaseServiceProvider" --tag="laravel-knowledge-base-migration"
 php artisan migrate
 ```
 
