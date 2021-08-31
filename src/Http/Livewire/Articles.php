@@ -98,4 +98,5 @@ class Articles extends Component
 
         return view('knowledge-base::livewire.article.article', compact('articles', 'categories'))->layout('knowledge-base::layouts.livewire.app');
     }
+
 }
