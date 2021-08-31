@@ -111,7 +111,7 @@ $sidebar = config('knowledge-base.show_sidebar');
                 <ul>
                 @forelse($latestArticle as $articleData)
                 @php $urlPart = Str::slug($articleData->category->category_name); @endphp
-                    <li><a href="{{ route('article.details',[$urlPart,$articleData->slug]) }}">{{ $articleData->article_name }}</a></li>
+                    <li><a href="{{ route('livewire.article.details',[$urlPart,$articleData->slug]) }}">{{ $articleData->article_name }}</a></li>
                 @empty
                     <div class="text-muted">No records found.</div>
                 @endforelse
