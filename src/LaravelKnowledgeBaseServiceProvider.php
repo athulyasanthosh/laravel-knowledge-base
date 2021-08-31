@@ -3,8 +3,10 @@
 namespace Athulya\LaravelKnowledgeBase;
 
 use Athulya\LaravelKnowledgeBase\Commands\LaravelKnowledgeBaseCommand;
+use Athulya\LaravelKnowledgeBase\Http\Livewire\Articles;
+use Athulya\LaravelKnowledgeBase\Http\Livewire\Categories;
+use Athulya\LaravelKnowledgeBase\Http\Livewire\Details;
 use Athulya\LaravelKnowledgeBase\Http\Livewire\FrontendKnowledgeBase;
-use Athulya\LaravelKnowledgeBase\Models\Article;
 use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -32,7 +34,8 @@ class LaravelKnowledgeBaseServiceProvider extends PackageServiceProvider
     public function bootingPackage()
     {
         Livewire::component('categories', Categories::class);
-        // Livewire::component('articles', Article::class);
-       // Livewire::component('frontendknowledgebase', FrontendKnowledgeBase::class);
+        Livewire::component('articles', Articles::class);
+        Livewire::component('frontendknowledgebase', FrontendKnowledgeBase::class);
+        Livewire::component('details', Details::class);
     }
 }
