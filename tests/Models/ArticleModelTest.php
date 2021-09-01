@@ -5,6 +5,7 @@ namespace Athulya\LaravelKnowledgeBase\Tests\Models;
 use Athulya\LaravelKnowledgeBase\Models\Article;
 use Athulya\LaravelKnowledgeBase\Models\Category;
 use Athulya\LaravelKnowledgeBase\Tests\TestCase;
+use Livewire\Livewire;
 
 class ArticleModelTest extends TestCase
 {
