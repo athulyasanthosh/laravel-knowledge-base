@@ -31,6 +31,12 @@ You can install the package via composer:
 composer require athulya/laravel-knowledge-base
 ```
 
+Please add below code to AppServiceProvider
+
+```bash
+Schema::defaultStringLength(191);
+```
+
 You can publish and run the migrations with:
 
 ```bash
