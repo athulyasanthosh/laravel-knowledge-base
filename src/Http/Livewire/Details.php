@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cookie;
 use Livewire\Component;
 
 class Details extends Component
-{    
+{
     public $category;
     public $slug;
     public $article;
@@ -54,10 +54,10 @@ class Details extends Component
             }
         }
         Article::where('id', $id)->update($data);
-        $articleLikesCount = Article::select('likes','dislikes')->find($id);
+        $articleLikesCount = Article::select('likes', 'dislikes')->find($id);
         // $this->votingCountLike = $articleLikesCount->likes;
         // $this->votingCountDislike = $articleLikesCount->dislikes;
-        if($vote == "like") {
+        if ($vote == "like") {
             $this->emit('disableLike');
         } else {
             $this->emit('disableDislike');
