@@ -7,10 +7,11 @@ use Athulya\LaravelKnowledgeBase\Http\Livewire\Articles;
 use Athulya\LaravelKnowledgeBase\Http\Livewire\Categories;
 use Athulya\LaravelKnowledgeBase\Http\Livewire\Details;
 use Athulya\LaravelKnowledgeBase\Http\Livewire\FrontendKnowledgeBase;
+use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class LaravelKnowledgeBaseServiceProvider extends PackageServiceProvider
+class LaravelKnowledgeBaseLivewireServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -24,9 +25,17 @@ class LaravelKnowledgeBaseServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasViews()
             ->hasAssets()
-            ->hasRoutes(['web', 'api'])
+            ->hasRoutes(['livewire-routes'])
             ->hasMigration('create_article_table')
             ->hasMigration('create_category_table')
             ->hasCommand(LaravelKnowledgeBaseCommand::class);
-    }    
+    }
+
+    public function bootingPackage()
+    {
+        Livewire::component('categories', Categories::class);
+        Livewire::component('articles', Articles::class);
+        Livewire::component('frontendknowledgebase', FrontendKnowledgeBase::class);
+        Livewire::component('details', Details::class);
+    }
 }

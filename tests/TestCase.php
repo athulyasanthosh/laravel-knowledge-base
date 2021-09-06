@@ -5,6 +5,8 @@ namespace Athulya\LaravelKnowledgeBase\Tests;
 use Athulya\LaravelKnowledgeBase\LaravelKnowledgeBaseServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Livewire\Livewire;
+use Livewire\Component;
 
 class TestCase extends Orchestra
 {

@@ -51,7 +51,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Athulya\\LaravelKnowledgeBase\\LaravelKnowledgeBaseServiceProvider"
+                "Athulya\\LaravelKnowledgeBase\\LaravelKnowledgeBaseServiceProvider",
+                "Athulya\\LaravelKnowledgeBase\\LaravelKnowledgeBaseLivewireServiceProvider"
             ],            
             "aliases": {                
                 "Livewire": "Athulya\\LaravelKnowledgeBase\\Livewire"
